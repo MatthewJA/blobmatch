@@ -158,7 +158,7 @@ def main():
     nvss_df.to_csv('nvss.csv')
 
     scores = [scorer_to_use(catalogue,name_TGSS,name_NVSS)
-              for (name_TGSS,name_NVSS) in tqdm(cat_matches)]
+              for (name_TGSS,name_NVSS) in tqdm(catalogue.index.values)]
     catalogue['score'] = scores
     catalogue.sort_values(by=['score'],inplace=True)
     catalogue.to_csv('patch_catalogue.csv')

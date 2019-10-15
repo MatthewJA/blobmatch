@@ -13,8 +13,8 @@ from astropy.io import fits
 from tqdm import tqdm_notebook as tqdm
 import matplotlib.pyplot as plt
 
-# 20' separation on sky
-SEPARATION_LIMIT = 2*60*1/3600
+# 2' separation on sky
+SEPARATION_LIMIT = 2*1/60
 
 def generate_matches():
     """generates matches.py, which contains all
@@ -110,7 +110,11 @@ def deci_deg_to_hr_min_sec(deci_deg):
 
 def iau_designation(ra,dec):
     """generate NVSS names as per:
-    https://heasarc.gsfc.nasa.gov/W3Browse/all/nvss.html"""
+    https://heasarc.gsfc.nasa.gov/W3Browse/all/nvss.html
+    There are four cases where there are pairs of sources which are so close together that their names would be identical according to this schema (see below), and the HEASARC has added suffixes of 'a' (for the source with the smaller RA) and 'b' (for the source with the larger RA) in such cases in order to differentate them.
+    It was easier just to hard-code this in,
+    should really check if designation alreadys exists and compare
+    """
     hr,schmin,schmec = deci_deg_to_hr_min_sec(ra)
     rhh = str(int(hr)).zfill(2)
     rmm = str(int(schmin)).zfill(2)
@@ -123,6 +127,17 @@ def iau_designation(ra,dec):
     dss = str(int(sec - sec%1)).zfill(2)
 
     designation = ''.join(('NVSS J',rhh,rmm,rss,sgn,ddd,dmm,dss))
+
+    close_pairs = {'NVSS J093731-102001':144.382,
+                   'NVSS J133156-121336':202.987,
+                   'NVSS J160612+000027':241.553,
+                   'NVSS J215552+380029':328.968}
+    if designation in close_pairs:
+        if ra < close_pairs[designation]:
+            designation = ''.join((designation,'a'))
+        else:
+            designation = ''.join((designation,'b'))          
+
     return designation
 
 def generate_catalogue():
