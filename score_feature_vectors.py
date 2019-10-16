@@ -94,7 +94,7 @@ def score_the_cat(catalogue,tgss_df,nvss_df,scorer,hist_name=None):
     plt.xlabel("match score")
     plt.ylabel('counts')
     plt.title('distribution of scores of catalogue matches in patch')
-    plt.savefig('{}.png'.format(hist_name),bbox_inches='tight')    
+    plt.savefig('{}.pdf'.format(hist_name),bbox_inches='tight')    
     
 def looper_TGSS_scorer(catalogue,name_TGSS,scorer):
     """only works for scorers that only need catalogue"""

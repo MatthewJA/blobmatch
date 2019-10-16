@@ -214,7 +214,7 @@ def generate_catalogue():
 
 def generate_histograms():
     """generates histograms of angular separation and spectral index of matches,
-    saves as hist_angle.png and hist_alpha.png"""
+    saves as hist_angle.pdf and hist_alpha.pdf"""
     plot_catalogue = np.loadtxt('catalogue.csv', delimiter=',', usecols=(6,8,10))
     seps   = plot_catalogue[:,0]*3600
     s_tgss = plot_catalogue[:,1]*1e3
@@ -227,7 +227,7 @@ def generate_histograms():
     plt.xlabel("angular separation, '' (arcsec)")
     plt.ylabel('counts')
     plt.title('distribution of angular separation of matches')
-    plt.savefig('hist_angle.png',bbox_inches='tight')
+    plt.savefig('hist_angle.pdf',bbox_inches='tight')
 
     fig,axis = plt.subplots(figsize=(14,7))
     plt.rcParams.update({'font.size': 18})
@@ -241,7 +241,7 @@ def generate_histograms():
     plt.xlabel("observed spectral index")
     plt.ylabel('counts')
     plt.title('distribution of observed spectral index of matches')
-    plt.savefig('hist_alpha.png',bbox_inches='tight')
+    plt.savefig('hist_alpha.pdf',bbox_inches='tight')
 
 def main(gen_matches_necessary=False):
     if gen_matches_necessary:
