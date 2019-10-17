@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\setlength\parindent{0pt}
+
+\title{A napkin-sized introduction to machine learning}
+\author{Cheng Soon Ong, transcribed by James Gardner }
+\date{June 2019}
+
+\begin{document}
+\maketitle
+
+all machine learning is a function:
+$f_w: X \rightarrow Y$
+\begin{itemize}
+    \item $f_w$ is the predictor/classifier
+    \item X is the input (to the test/predictor), for blobmatch: the two surveys of gaussians on planes
+    \item Y is the output, for blobmatch: probabilities of match for every pair
+\end{itemize}
+
+data is the known inputs and corresponding outputs, (i.e. "the right action")
+$$\text{data} = (x_1,y_1), \ldots, (x_N,y_N)$$
+
+loss is a metric of the difference of output of the function to the known output data. NB: cost is not the same as loss, follow this up!
+$$\text{loss} = l(y_1,f(x_1))$$
+the average is not the expected value(!), which would be over the whole universe
+$$\text{avg  loss} = \frac{1}{N} \sum_{n=1}^N l(y_n,f(x_n))$$
+
+training is to \textbf{minimise the objective}, which is the average loss "regularized" by some parameter, $\lambda$, with the norm of the weight vector, $\omega$
+$$\text{objective} = \text{avg loss} + \lambda ||\omega||^2$$
+
+There are two meanings of "algorithm" in machine learning:
+\begin{itemize}
+    \item[(1)] the training, building the function, $f_w$, from training data
+    \item[(2)] testing/predicting, running the function on other data
+\end{itemize}
+
+\end{document}

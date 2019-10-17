@@ -1,0 +1,6 @@
+wk07 - resolve sorters, begin logistic regression with posmatch labels
+wk08 - all things logistic regression
+wk09 - extensions
+wk10 - all core project done, move to writing
+wk11 - writing draft report
+wk12 - drafting report, presentation

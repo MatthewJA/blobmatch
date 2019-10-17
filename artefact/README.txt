@@ -11,14 +11,14 @@ https://github.com/MatthewJA/blobmatch
 Directory structure:
 artefact/
 	source/
-		(all .ipynb notebooks, manual_labels.csv, add sky_matches.csv for bypass)
+		(all .ipynb notebooks, manual_labels.csv)
 	report/
 		pics/
 			(all plots as .pdf saved by above notebooks, also cut-out comparison)
 		main.tex
 		report.pdf
 	project/
-		(non-plot outputs of notebooks, defunct scipts and plots)
+		(non-plot outputs of notebooks except sky_matches.csv and sky_catalogue.csv, also defunct scipts and plots)
 	README.txt
 	LICENSE
 	.gitignore
@@ -81,14 +81,7 @@ hist_patch_cat_score_spectral.pdf, and hist_patch_cat_score_combo.pdf
 
 Run sky_positional_matching.ipynb, executing all cells from top to bottom
 (constructs catalogue of primitive feature vectors over entire sky in catalogues, performs positional matching)
-(warning: will take a much longer time, at least 30 minutes, see alternative bypass below)
+(warning: will take a much longer time, at least 30 minutes)
 sky_positional_matching.ipynb requires TGSSADR1_7sigma_catalog.tsv and CATALOG.FIT be present in cwd
 sky_positional_matching.ipynb saves sky_matches.csv, sky_catalogue.csv, hist_angle.pdf, and hist_alpha.pdf
-
-Alternatively, have the provided version of sky_matches.csv (found in source folder) present in cwd
-Comment out/delete the third (3rd) cell of sky_positional_matching that calls generate_matches
-Run the modified sky_positional_matching.ipynb, executing all (remaining) cells from top to bottom
-modified sky_positional_matching.ipynb requires sky_matches.csv and (still) also requires
-TGSSADR1_7sigma_catalog.tsv and CATALOG.FIT be present in cwd
-modified sky_positional_matching.ipynb saves sky_catalogue.csv, hist_angle.pdf, and hist_alpha.pdf
 ---
