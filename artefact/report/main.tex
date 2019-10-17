@@ -1,0 +1,115 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx,subfig}
+\usepackage{hyperref}
+% \usepackage{float}
+% \usepackage{caption,subcaption}
+
+\setlength{\parindent}{0pt}
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+
+\title{Blob-match: Machine learning for cross-identification of radio surveys}
+\author{James Gardner, supervisors:\ Cheng Soon Ong, Matthew Alger}
+\date{Semester 2 2019}
+
+\begin{document}
+
+\begin{center}
+\emph{THIS IS THE DRAFT AS OF ARTEFACT SUBMISSION\\
+THIS IS NOT THE FINAL REPORT}    
+\end{center}
+
+\maketitle
+
+\begin{abstract}
+% \centering
+    %Hey, my name is James and this is my wicked cool report.
+Success in radio-radio survey cross-identification is determining the real, physical objects that we're looking at. The naivest measure of two sources (or blobs) being a match for an actual object is their separation on the sky. Using this separation, we train a logistic regression classifier on the TGSS (TIFR GMRT Sky Survey Alternative Data Release 1) and NVSS (NRAO VLA Sky Survey) radio surveys. Then use its predictions to partition a patch of the sky into objects, by transitively grouping any chain of predicted matches. Although the classifier successfully learns the importance of separation, we find that the naive partitioning fails to convincingly identify objects in the sky.
+\end{abstract}
+
+\section{Introduction}
+%cut-out
+
+
+\section{Positional matching}
+
+\subsection{}
+% hist_sep, hist_alpha, alpha_unique
+\subsection{}
+% scorers against each of f, g, h
+\subsection{Catalogue}
+% explain each of NVSS and TGSS and making the catalogue
+
+
+\section{Logistic regression}
+%weights
+\subsection{Features}
+% pair T / N
+\subsection{Napkin-sized introduction to machine learning}
+% all from napkin
+
+all machine learning is a function:
+$f_w: X \rightarrow Y$
+\begin{itemize}
+    \item $f_w$ is the predictor/classifier
+    \item X is the input (to the test/predictor), for blobmatch: the two surveys of gaussians on planes
+    \item Y is the output, for blobmatch: probabilities of match for every pair
+\end{itemize}
+
+data is the known inputs and corresponding outputs, (i.e. "the right action")
+$$\text{data} = (x_1,y_1), \ldots, (x_N,y_N)$$
+
+loss is a metric of the difference of output of the function to the (known) data. NB: cost is not the same as loss, follow this up!
+$$\text{loss} = l(y_1,f(x_1))$$
+the average is not the expected value(!), which would be over the whole universe
+$$\text{avg  loss} = \frac{1}{N} \sum_{n=1}^N l(y_n,f(x_n))$$
+
+training is to \textbf{minimise the objective}, which is the average loss "regularized" by some parameter, $\lambda$, with the norm of the weight vector, $\omega$
+$$\text{objective} = \text{avg loss} + \lambda ||\omega||^2$$
+
+There are two meanings of "algorithm" in machine learning:
+\begin{itemize}
+    \item[(1)] the training, building the function, $f_w$, from training data
+    \item[(2)] testing/predicting, running the function on other data
+\end{itemize}
+
+% \subsection{Definitions}
+% \begin{itemize}
+%     \item loss
+%     \item cost
+%     \item score
+%     \item accuracy
+%     \item rightness
+% \end{itemize}
+\subsection{}
+% explain how to get from log reg to object list
+\subsection{Three types of predictors}
+% explain f, g, and h
+% plot prediction histograms with labeled populations, twohumps?
+\subsection{}
+% pretty snowflake picture
+
+
+\section{Discussion}
+% + conclusion if you have one
+
+\newpage
+\section{Appendix}
+\subsection{Artefact}
+All the code, data, and plots used in this report can be found in the library: blobmatch, found here: \url{https://github.com/MatthewJA/blobmatch}\\
+
+It contains (along with the various plots produced by each script):
+\begin{itemize}
+    \item README.txt; detailing that the data is drawn from the two surveys: TGSS from \url{http://tgssadr.strw.leidenuniv.nl/doku.php}, and NVSS from \url{https://heasarc.gsfc.nasa.gov/W3Browse/all/nvss.html}
+    \item positional\_catalogue.py; (sky\_catalogue.csv)
+    \item feature\_vectors.py; (patch\_catalogue.csv, tgss.csv, nvss.csv)
+    \item score\_feature\_vectors.py; (labels and sorts the above feature vectors)
+    \item logistic\_regression.py; (weights.csv, objects.csv)
+    \item manual\_labels.csv; by eye from cut-outs
+\end{itemize}
+
+
+
+\end{document}
