@@ -9,7 +9,7 @@ Current build found at:
 https://github.com/MatthewJA/blobmatch
 
 Directory structure:
-artefact/
+blobmatch/
 	source/
 		(all .ipynb notebooks, manual_labels.csv)
 	report/
